@@ -1,0 +1,45 @@
+---
+- hosts: all
+  remote_user: "{{ user }}"
+  pre_tasks:
+
+  - name: update cache (Ubuntu)
+    tags: update,ubuntu
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install package updates and upgrade (AMI)
+    tags: update,upgrade,ami
+    yum:
+      name: "*"
+      state: latest
+      update_cache: yes
+      exclude: kernel*
+    changed_when: false
+    when: ansible_distribution == "Amazon"
+
+
+- hosts: workstations
+  remote_user: "{{ user }}"
+  roles:
+  - workstations
+
+
+- hosts: web_servers
+  remote_user: "{{ user }}"
+  roles:
+  - web_servers
+
+
+- hosts: db_servers
+  remote_user: "{{ user }}"
+  roles:
+  - db_servers
+
+
+- hosts: file_servers
+  remote_user: "{{ user }}"
+  roles:
+  - file_servers

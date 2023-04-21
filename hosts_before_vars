@@ -1,0 +1,14 @@
+[web_servers]
+ubuntu-node-3 ansible_host=34.226.141.217 user=ubuntu
+ami-node-3 ansible_host=3.80.210.106 user=ec2-user
+
+[db_servers]
+ubuntu-node-2 ansible_host=44.211.123.170 user=ubuntu
+ami-node-2 ansible_host=54.221.50.208 user=ec2-user
+
+[file_servers]
+ubuntu-node-1 ansible_host=54.196.250.90 user=ubuntu
+ami-node-1 ansible_host=54.237.219.82 user=ec2-user
+
+[workstations]
+ubuntu-node-4 ansible_host=3.92.50.252 user=ubuntu

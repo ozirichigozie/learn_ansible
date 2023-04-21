@@ -1,0 +1,55 @@
+---
+- hosts: all
+  remote_user: "{{ user }}"
+  pre_tasks:
+
+  - name: install package updates and upgrade (Ubuntu)
+    tags: always
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install package updates and upgrade (AMI)
+    tags: always
+    yum:
+      name: "*"
+      state: latest
+      update_cache: yes
+      exclude: kernel*
+    when: ansible_distribution == "Amazon"
+
+
+- hosts: all
+  remote_user: "{{ user }}"
+  tasks:
+
+  - name: add_user cloudlord
+    tags: always
+    user:
+      name: cloudlord
+      groups: root
+
+        #  - name: add ssh_key for cloudlord
+    #    tags: always
+      #    authorized_key:
+      #      user: cloudlord
+        #      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK4bdDVEsnNu1mVJNybKaVgGR8YRR5tADbbrOuaaVPlG cloudlord@OZIRICHIGO41022"
+
+  - name: copy key.pem to cloudlord
+    tags: always
+    copy:
+      src: ~/newkey.pem
+      dest: /home/cloudlord/newkey.pem
+      mode: 0644
+      owner: root
+      group: root
+
+  - name: add sudoers file for cloudlord
+    tags: always
+    copy:
+      src: sudoer_cloudlord
+      dest: /etc/sudoers.d/cloudlord
+      owner: root
+      group: root
+      mode: 0440

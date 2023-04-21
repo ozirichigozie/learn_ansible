@@ -1,0 +1,7 @@
+ansible_host: 54.196.250.90
+user: ubuntu
+apache_package_name: apache2
+apache_service: apache2
+php_package_name: libapache2-mod-php
+ssh_users: "ubuntu cloudlord"
+ssh_template_file: sshd_config_ubuntu.j2

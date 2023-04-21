@@ -1,0 +1,26 @@
+---
+- hosts: all
+  remote_user: "{{ user }}"
+  pre_tasks:
+
+  - name: install package updates and upgrade (Ubuntu)
+    tags: always
+    apt:
+      update_cache: yes
+      upgrade: dist
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install package updates and upgrade (AMI)
+    tags: always
+    yum:
+      name: "*"
+      state: latest
+      update_cache: yes
+      exclude: kernel*
+    when: ansible_distribution == "Amazon"
+
+
+- hosts: all
+  remote_user: "{{ user }}"
+  roles:
+  - base

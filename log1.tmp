@@ -1,0 +1,77 @@
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ami-node-3]
+ok: [ubuntu-node-3]
+ok: [ami-node-2]
+ok: [ubuntu-node-1]
+ok: [ubuntu-node-2]
+ok: [ubuntu-node-4]
+ok: [ami-node-1]
+
+TASK [install package updates and upgrade (Ubuntu)] ****************************
+skipping: [ami-node-3]
+skipping: [ami-node-2]
+skipping: [ami-node-1]
+ok: [ubuntu-node-1]
+ok: [ubuntu-node-3]
+ok: [ubuntu-node-2]
+changed: [ubuntu-node-4]
+
+TASK [install package updates and upgrade (AMI)] *******************************
+skipping: [ubuntu-node-3]
+skipping: [ubuntu-node-2]
+skipping: [ubuntu-node-1]
+skipping: [ubuntu-node-4]
+ok: [ami-node-1]
+ok: [ami-node-3]
+ok: [ami-node-2]
+
+PLAY [all] *********************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ami-node-3]
+ok: [ami-node-2]
+ok: [ubuntu-node-3]
+ok: [ubuntu-node-1]
+ok: [ubuntu-node-2]
+ok: [ami-node-1]
+ok: [ubuntu-node-4]
+
+TASK [add_user cloudlord] ******************************************************
+ok: [ubuntu-node-3]
+ok: [ubuntu-node-2]
+ok: [ami-node-3]
+ok: [ubuntu-node-1]
+ok: [ami-node-2]
+ok: [ami-node-1]
+ok: [ubuntu-node-4]
+
+TASK [copy key.pem to cloudlord] ***********************************************
+ok: [ubuntu-node-3]
+ok: [ami-node-3]
+ok: [ubuntu-node-2]
+ok: [ami-node-2]
+ok: [ubuntu-node-1]
+ok: [ubuntu-node-4]
+ok: [ami-node-1]
+
+TASK [add sudoers file for cloudlord] ******************************************
+ok: [ami-node-2]
+ok: [ubuntu-node-3]
+ok: [ubuntu-node-1]
+ok: [ami-node-1]
+ok: [ubuntu-node-2]
+ok: [ubuntu-node-4]
+ok: [ami-node-3]
+
+PLAY RECAP *********************************************************************
+ami-node-1                 : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ami-node-2                 : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ami-node-3                 : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ubuntu-node-1              : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ubuntu-node-2              : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ubuntu-node-3              : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+ubuntu-node-4              : ok=6    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
